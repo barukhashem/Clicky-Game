@@ -10,26 +10,49 @@ class App extends Component {
   state = {
     friends,
     score: 0,
-    clickedImages: []
+    highScore: 0,
+    // clickedImages: []
   };
+
   clickImage = (id) => {
-    console.log(id);
+    let friendArr = [...this.state.friends];
     // This creates a new variable called clickedImagesContainer that grabs the current state of the clickedImages array:
-    const clickedImagesContainer = this.state.clickedImages
+
+    for (let i = 0; i < friendArr.length; i++) {
+
+      if (id === friendArr[i].id) {
+        if (friendArr[i].clicked) {
+          // handle our already clicked code here (restart game & reshuffle):
+          
+        } else {
+          friendArr[i].clicked = true;
+          // This increases the score:
+          this.state.score++
+          this.state.highScore++
+          console.log(friendArr[i]);
+        }
+      }
+    }
+
+    friendArr = ShuffleArray(friendArr);
+
+    this.setState({ friends: friendArr });
+    // const clickedImagesContainer = this.state.clickedImages
     // This pushes the clicked image's id into the clickedImagesContainer:
 
     // This updates the clickImages state with the updated version of that state:
-    this.setState({ clickImages: clickedImagesContainer });
-    this.shuffleArray();
-    if (clickedImagesContainer.indexOf(id) < 0) {
-      console.log("not in the array");
-      score++;
-    }
-    else {
-      console.log("it's in the array");
-      score = 0;
-    }
-    clickedImagesContainer.push(id);
+    // this.setState({ clickImages: clickedImagesContainer });
+    // this.shuffleArray();
+    // if (clickedImagesContainer.indexOf(id) < 0) {
+    //   console.log("not in the array");
+
+    //   // score++;
+    // }
+    // else {
+    //   console.log("it's in the array");
+    //   // score = 0;
+    // }
+    // clickedImagesContainer.push(id);
   }
 
   shuffleArray = () => {
@@ -37,12 +60,6 @@ class App extends Component {
     const shuffledArray = ShuffleArray(shuffle);
     this.setState({ friends: shuffledArray });
   }
-  // removeFriend = id => {
-  //   // Filter this.state.friends for friends with an id not equal to the id being removed
-  //   const friends = this.state.friends.filter(friend => friend.id !== id);
-  //   // Set this.state.friends equal to the new friends array
-  //   this.setState({ friends });
-  // };
 
   // Map over this.state.friends and render a FriendCard component for each friend object
   render() {
@@ -51,7 +68,7 @@ class App extends Component {
         <div>
           {this.state.score}
         </div>
-        <Title>Friends List</Title>
+        <Title>SpongeBob and Friends</Title>
         {this.state.friends.map(friend => (
           <FriendCard
             // removeFriend={this.removeFriend}
