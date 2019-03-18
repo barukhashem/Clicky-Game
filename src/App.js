@@ -6,9 +6,9 @@ import friends from "./friends.json";
 import ShuffleArray from "shuffle-array";
 
 class App extends Component {
-  // Setting this.state.friends to the friends json array
+  // This sets this.state.friends to the friends json array:
   state = {
-    friends,
+    friends: friends,
     score: 0,
     highScore: 0,
     // clickedImages: []
@@ -18,25 +18,36 @@ class App extends Component {
     let friendArr = [...this.state.friends];
     // This creates a new variable called clickedImagesContainer that grabs the current state of the clickedImages array:
 
+    const data = {};
+
     for (let i = 0; i < friendArr.length; i++) {
 
       if (id === friendArr[i].id) {
         if (friendArr[i].clicked) {
-          // handle our already clicked code here (restart game & reshuffle):
-          
+          // Write code that handles previously images clicked here (restarts game & reshuffles images):
+          friends.forEach(friend => friend.clicked = false);
+          data.friends = friends;
+          data.score = 0
+          console.log(friends);
+          // this.setState({friends: friends, score: 0});
+
         } else {
           friendArr[i].clicked = true;
-          // This increases the score:
-          this.state.score++
-          this.state.highScore++
+          // This increments the score:
+          data.score = this.state.score + 1;
+          data.friends = friendArr;
+
+          // This increments and retains the high score:
+          // this.state.highScore++
           console.log(friendArr[i]);
         }
       }
     }
 
-    friendArr = ShuffleArray(friendArr);
+    data.friends = ShuffleArray(data.friends);
 
-    this.setState({ friends: friendArr });
+    this.setState(data);
+
     // const clickedImagesContainer = this.state.clickedImages
     // This pushes the clicked image's id into the clickedImagesContainer:
 
@@ -61,14 +72,15 @@ class App extends Component {
     this.setState({ friends: shuffledArray });
   }
 
-  // Map over this.state.friends and render a FriendCard component for each friend object
+  // This maps over this.state.friends and renders a FriendCard component for each friend object:
   render() {
     return (
       <Wrapper>
-        <div>
-          {this.state.score}
-        </div>
-        <Title>SpongeBob and Friends</Title>
+        {/* <div className="text-center"> */}
+        <Title>{`SpongeBob and Friends\n
+              \nScore: ${this.state.score}`}</Title>
+        {/* <h1><strong></strong></h1> */}
+        {/* </div> */}
         {this.state.friends.map(friend => (
           <FriendCard
             // removeFriend={this.removeFriend}
