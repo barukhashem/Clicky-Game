@@ -27,6 +27,13 @@ class App extends Component {
           // Write code that handles previously images clicked here (restarts game & reshuffles images):
           friends.forEach(friend => friend.clicked = false);
           data.friends = friends;
+          // data.highScore = this.state.score;
+
+          // If the current score is higher than the high score, then replace the high score with the current score:
+          if (this.state.score > this.state.highScore) {
+            data.highScore = this.state.score;
+          }
+
           data.score = 0
           console.log(friends);
           // this.setState({friends: friends, score: 0});
@@ -47,23 +54,6 @@ class App extends Component {
     data.friends = ShuffleArray(data.friends);
 
     this.setState(data);
-
-    // const clickedImagesContainer = this.state.clickedImages
-    // This pushes the clicked image's id into the clickedImagesContainer:
-
-    // This updates the clickImages state with the updated version of that state:
-    // this.setState({ clickImages: clickedImagesContainer });
-    // this.shuffleArray();
-    // if (clickedImagesContainer.indexOf(id) < 0) {
-    //   console.log("not in the array");
-
-    //   // score++;
-    // }
-    // else {
-    //   console.log("it's in the array");
-    //   // score = 0;
-    // }
-    // clickedImagesContainer.push(id);
   }
 
   shuffleArray = () => {
@@ -77,22 +67,18 @@ class App extends Component {
     return (
       <Wrapper>
         {/* <div className="text-center"> */}
-        <Title>{`SpongeBob and Friends\n
-              \nScore: ${this.state.score}`}</Title>
-        {/* <h1><strong></strong></h1> */}
-        {/* </div> */}
+        <Title>{`SpongeBob and Friends`}</Title>
+        <Title>{`Score: ${this.state.score}`}</Title>
+        <Title>{`High Score: ${this.state.highScore}`}</Title>
         {this.state.friends.map(friend => (
           <FriendCard
-            // removeFriend={this.removeFriend}
             id={friend.id}
             key={friend.id}
-            // name={friend.name}
             image={friend.image}
             clickImage={this.clickImage}
-          // occupation={friend.occupation}
-          // location={friend.location}
           />
         ))}
+
       </Wrapper>
     );
   }
