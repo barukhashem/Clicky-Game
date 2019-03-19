@@ -12,11 +12,13 @@
   }
   
   h1 {
+    /* font-family: 'Slackey', cursive; */
     font-family: 'ZCOOL KuaiLe', cursive;
     color: orangered;
   }
 
-  h2 {
-    font-family: 'ZCOOL KuaiLe', cursive;
+  h3 {
+    font-family: 'Rock Salt', cursive;
+    /* font-family: 'ZCOOL KuaiLe', cursive; */
     color: white;
   }
