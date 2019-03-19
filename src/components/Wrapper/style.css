@@ -1,6 +1,7 @@
 .wrapper {
     padding-top: 50px;
-    background: #ECEFF1;
+    /* background:#6CADDC; */
+    background: lightskyblue;
     height: 100%;
     display: flex;
     flex-flow: row wrap;
@@ -10,3 +11,12 @@
     overflow: auto;
   }
   
+  h1 {
+    font-family: 'ZCOOL KuaiLe', cursive;
+    color: orangered;
+  }
+
+  h2 {
+    font-family: 'ZCOOL KuaiLe', cursive;
+    color: white;
+  }

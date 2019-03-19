@@ -68,8 +68,8 @@ class App extends Component {
       <Wrapper>
         {/* <div className="text-center"> */}
         <Title>{`SpongeBob and Friends`}</Title>
-        <Title>{`Score: ${this.state.score}`}</Title>
-        <Title>{`High Score: ${this.state.highScore}`}</Title>
+        <h1>{`Score by clicking images only once. Remember which images you clicked.`}</h1>
+        <h2>{`Score: ${this.state.score}`} | {`High Score: ${this.state.highScore}`}</h2>
         {this.state.friends.map(friend => (
           <FriendCard
             id={friend.id}

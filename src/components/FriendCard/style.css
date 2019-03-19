@@ -1,22 +1,32 @@
 .card {
     background: #fff;
     border-radius: 2px;
-    height: 325px;
+    height: 210px;
     margin: 1rem;
     position: relative;
-    width: 325px;
+    width: 210px;
     box-shadow: 0 3px 6px #999, 0 3px 6px #999;
     text-align: left;
+    border-radius: 4px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 1s; transform: 2s;
+  }
+
+  .card:hover {
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
+    transform: translate(2px, 2px);
+    cursor: pointer;
+    transition: box-shadow 1s; transform: 2s;
   }
   
   .card > .img-container {
     height: 100%;
     overflow: hidden;
     text-align: center;
-    background:#6CADDC;
+    background: peachpuff;
   }
   .card > .img-container > img {
-    width: 100%
+    width: 50%
   }
   
   .card > .content {
